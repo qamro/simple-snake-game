@@ -36,14 +36,22 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_UP] and snake_dir != (0, 20):
+    # move up using arrow up, Z (AZERTY), W (QWERTY)
+    if (keys[pygame.K_UP] or keys[pygame.K_z] or keys[pygame.K_w]) and snake_dir != (0, 20):
         snake_dir = (0, -20)
-    elif keys[pygame.K_DOWN] and snake_dir != (0, -20):
+
+    # move down using arrow down, S
+    elif (keys[pygame.K_DOWN] or keys[pygame.K_s]) and snake_dir != (0, -20):
         snake_dir = (0, 20)
-    elif keys[pygame.K_LEFT] and snake_dir != (20, 0):
+
+    # move left using arrow left, Q (AZERTY), A (QWERTY)
+    elif (keys[pygame.K_LEFT] or keys[pygame.K_q] or keys[pygame.K_a]) and snake_dir != (20, 0):
         snake_dir = (-20, 0)
-    elif keys[pygame.K_RIGHT] and snake_dir != (-20, 0):
+
+    # move right using arrow right, D
+    elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and snake_dir != (-20, 0):
         snake_dir = (20, 0)
         
     
@@ -74,6 +82,6 @@ while running:
     score_text = font.render(f"Score: {score}", True, (255, 255, 255))
     screen.blit(score_text, (10, 10))
     pygame.display.flip()
-    clock.tick(15)
+    clock.tick(10)
     
 pygame.quit()
